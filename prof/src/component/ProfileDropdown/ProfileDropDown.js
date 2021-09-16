@@ -1,6 +1,7 @@
 import React,{useRef} from 'react';
 import './ProfileDropDown.css';
 import {Link} from 'react-router-dom';
+import profileImage from '../ContactUs/Template/images/imageProfile.png'
 const ProfileDropDown = (props)=>{
     const showProfile = useRef();
     const profileHandler = ()=>{
@@ -10,7 +11,7 @@ const ProfileDropDown = (props)=>{
       return(
           <div className="dropdown-container">
               <div className="dropdown-profile"  onClick={profileHandler}>
-                <img src="C:\Users\ash56\Downloads\user.png" alt="user"></img>
+                <img src={profileImage} alt="user"></img>
               </div>
               <div className="dropdown-menu " ref={showProfile} >
                 <h3>{props.userName}</h3>

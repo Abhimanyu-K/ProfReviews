@@ -12,14 +12,14 @@
   margin-right: 15px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid black;
-  background: rgb(206, 187, 236);
+  border: 1px solid black;
+
   overflow: hidden;
   cursor: pointer;
 }
 .dropdown-profile img {
   position: absolute;
-  top: 4rem;
+  top: 0rem;
   left: 0;
 
   width: 100%;

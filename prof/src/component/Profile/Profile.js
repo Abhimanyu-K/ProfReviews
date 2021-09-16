@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.css';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-
+import profileImage from '../ContactUs/Template/images/imageProfile.png'
 const Profile = ()=>{
     const userName = localStorage.getItem('userName');
     let date = localStorage.getItem('date');
@@ -13,7 +13,7 @@ const Profile = ()=>{
             <div className="profile-data">
                     <div className="profile-div">
                         <div className='profile-image-div'>
-                            <img className='profile-image1' src='https://i.pravatar.cc/125' alt=''></img>
+                            <img className='profile-image1' src={profileImage} alt=''></img>
                         </div>
                         <div className="profile-userName">
                             <span>{userName}</span>
