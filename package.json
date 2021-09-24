@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon script.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix Client && npm run build --prefix Client",
-    "start-server": "node script.js",
+    "start-server": "nodemon script.js",
     "start:dev": "nodemon script.js"
   },
   "repository": {
