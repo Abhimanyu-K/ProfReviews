@@ -40,7 +40,7 @@ const Login1 = (props)=>{
                <div className="login1Form">
                    <form onSubmit={formChangeHandler}>
                         <GoogleLogin
-                            clientId={process.env.GOOGLE_KEY}
+                            clientId={process.env.GOOGLE_CLIENT_ID}
                             buttonText="Log in with Google"
                             
                             onSuccess={handleLogin}

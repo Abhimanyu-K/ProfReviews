@@ -38,7 +38,7 @@ const {value:enteredEmail,
       props.google(res);
   
     }
-    console.log(process.env.GOOGLE_KEY);
+    console.log(process.env.GOOGLE_CLIENT_ID);
   return  (
     <div className="login1-Container">
     <div className="login1Header">

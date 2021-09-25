@@ -6,7 +6,7 @@ const authController = require('../controllers/auth');
 const router = express.Router();
 const GoogleUser = require('../models/GoogleAuth');
 const jwt = require('jsonwebtoken');
-const client = new OAuth2Client(process.env.CLIENT_ID);
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const passport = require("passport");
 router.put('/signup',
 [
@@ -33,7 +33,8 @@ router.put('/api/v1/auth/google',async (req,res)=>{
     const token = req.body.token;
     console.log(token);
     const ticket = await client.verifyIdToken({
-        idToken:token
+        idToken:token,
+        audience: process.env.GOOGLE_CLIENT_ID
     });
     const {name,email,picture} = ticket.getPayload();
     GoogleUser.findOne({email:email})
