@@ -30,7 +30,7 @@ const Login1 = (props)=>{
             props.google(res);
         }    
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
-                  
+        console.log(process.env.GOOGLE_CLIENT_ID);          
    return (
        <div className="login1-Container">
            <div className="login1Header">
