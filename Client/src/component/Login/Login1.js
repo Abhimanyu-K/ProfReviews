@@ -28,11 +28,11 @@ const Login1 = (props)=>{
            //resetPasswordInput();
         }
         const handleLogin = (res)=>{
-            console.log(res.tokenId);
+            console.log(res, "ppp");
             props.google(res);
         }    
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
-        console.log(clientId);         
+        
    return (
        <div className="login1-Container">
            <div className="login1Header">
