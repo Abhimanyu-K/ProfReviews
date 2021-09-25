@@ -11,7 +11,7 @@ class Search extends Component {
   };
 
   render() {
-    console.log(this.props.value)
+   
     return (
       <React.Fragment>
         <div className="app">
