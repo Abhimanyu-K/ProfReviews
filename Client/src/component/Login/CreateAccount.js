@@ -48,7 +48,7 @@ const {value:enteredEmail,
         <div className="login1Form">
             <form onSubmit={formsubmitHandler}>
                 <GoogleLogin
-                    clientId={process.env.GOOGLE_KEY}
+                    clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
                     buttonText="Log in with Google"
                    
                     onSuccess={handleLogin}

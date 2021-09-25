@@ -2,7 +2,7 @@ import React from "react";
 import "./AllProfile.css";
 import { Link } from "react-router-dom";
 const AllProfile = (props) => {
-  console.log(props.image);
+ 
   const link = props.id+"/profile";
   return (
     <div className="AllProfile">

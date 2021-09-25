@@ -30,7 +30,7 @@ const Login1 = (props)=>{
             props.google(res);
         }    
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
-        console.log(process.env.GOOGLE_CLIENT_ID);          
+                 
    return (
        <div className="login1-Container">
            <div className="login1Header">
@@ -40,7 +40,7 @@ const Login1 = (props)=>{
                <div className="login1Form">
                    <form onSubmit={formChangeHandler}>
                         <GoogleLogin
-                            clientId={process.env.GOOGLE_CLIENT_ID}
+                            clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
                             buttonText="Log in with Google"
                             
                             onSuccess={handleLogin}
