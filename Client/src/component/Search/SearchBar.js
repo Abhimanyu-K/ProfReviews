@@ -16,7 +16,7 @@ function SearchBar({ placeholder,value }) {
   let v = [];
   let domainResult = [];
   
-  fetch("http://localhost:8080/search")
+  fetch("/search")
     .then((res) => {
       return res.json();
     })
