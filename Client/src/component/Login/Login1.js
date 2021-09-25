@@ -28,7 +28,7 @@ const Login1 = (props)=>{
            //resetPasswordInput();
         }
         const handleLogin = (res)=>{
-            console.log(res);
+            console.log(res.tokenId);
             props.google(res);
         }    
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
