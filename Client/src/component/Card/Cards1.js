@@ -16,7 +16,7 @@ class Cards1 extends  Component{
     componentDidMount(){
         
         this.setState({name:localStorage.getItem("userName")});
-        fetch("http://localhost:8080/rating")
+        fetch("/rating")
         .then(res=>{
             if(res.status!==200)
             { console.log("error");

@@ -73,7 +73,7 @@ class App extends Component {
   loginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    fetch("http://localhost:8080/auth/login", {
+    fetch("/auth/login", {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -132,7 +132,7 @@ class App extends Component {
     const date = new Date().toISOString();
     localStorage.setItem('email',authData.email);
     localStorage.setItem("date", date);
-    fetch("http://localhost:8080/auth/signup", {
+    fetch("/auth/signup", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -180,7 +180,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({ authLoading: true });
     console.log(authData.resetToken);
-    fetch("http://localhost:8080/auth/reset", {
+    fetch("/auth/reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -213,7 +213,7 @@ class App extends Component {
     //event.preventDefault();
 
     console.log(token);
-    fetch("http://localhost:8080/auth/reset/:token", {
+    fetch("/auth/reset/:token", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -246,7 +246,7 @@ class App extends Component {
     const userid = localStorage.getItem("userId");
     const userName = localStorage.getItem("userName");
     this.setState({ authLoading: true });
-    fetch("http://localhost:8080/create-post", {
+    fetch("/create-post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -289,7 +289,7 @@ class App extends Component {
   };
   contactFormSubmitHandler = (event, authData) => {
     event.preventDefault();
-    fetch("http://localhost:8080/contactus", {
+    fetch("/contactus", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -328,7 +328,7 @@ class App extends Component {
     const result = res.profileObj;
     const token = res.tokenId;
     console.log(result, token);
-    fetch("http://localhost:8080/auth/api/v1/auth/google",{
+    fetch("/auth/api/v1/auth/google",{
      method:"PUT",
      headers:{
         "Content-Type":"application/json"
@@ -361,7 +361,7 @@ class App extends Component {
   
   ratingHandler=(event,resData)=>{
     event.preventDefault()
-    fetch("http://localhost:8080/rating",{
+    fetch("/rating",{
       method:'POST',
       headers: {
           "Content-Type": "application/json",

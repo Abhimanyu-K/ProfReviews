@@ -12,7 +12,7 @@ class Dashboard extends Component{
     };
     componentDidMount(){
         const userId = localStorage.getItem('userId');
-        fetch('http://localhost:8080/feed/posts')
+        fetch('/feed/posts')
         .then(res=>{
             if(res.status!==200){
                 return;
@@ -38,7 +38,7 @@ class Dashboard extends Component{
     }
     deletePostHandler=(eve)=>{
      
-        fetch('http://localhost:8080/feed/post/'+eve,{
+        fetch('/feed/post/'+eve,{
             method:'DELETE'
         })
         .then(res=>{
@@ -59,7 +59,7 @@ class Dashboard extends Component{
     }
     callBack = ()=>{
         const userId = localStorage.getItem('userId');
-        fetch('http://localhost:8080/feed/posts')
+        fetch('/feed/posts')
         .then(res=>{
             if(res.status!==200){
                 return;

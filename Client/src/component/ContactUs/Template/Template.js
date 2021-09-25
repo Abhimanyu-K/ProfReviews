@@ -33,7 +33,7 @@ class Template extends Component {
     else{
       this.setState({islogin:true})
     }
-    fetch("http://localhost:8080/search/" + profileId)
+    fetch("/search/" + profileId)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch Profile");
@@ -57,7 +57,7 @@ class Template extends Component {
       .catch((err) => {
         console.log(err);
       });
-      fetch("http://localhost:8080/comment/" + profileId)
+      fetch("/comment/" + profileId)
       .then(res=>{
         if(res.status!==200)
         {
@@ -103,7 +103,7 @@ class Template extends Component {
   onDeleteClickBtn = (id)=>{
     if(window.confirm("Are you want to remove comment?"))
     {
-      fetch('http://localhost:8080/comment/delete/'+id,{
+      fetch('/comment/delete/'+id,{
         method:'DELETE'
       })
       .then(res=>{
@@ -123,7 +123,7 @@ class Template extends Component {
   formChangeHandler = (event)=>{
     event.preventDefault();
     
-    fetch("http://localhost:8080/comment",{
+    fetch("/comment",{
         method:"PUT",
         headers:{
           "Content-Type":"application/json",
