@@ -4,6 +4,7 @@ import './Login1.css';
 
 import useInput from '../../Hooks/use-input';
 import {GoogleLogin} from 'react-google-login';
+const clientId = "224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com";
 const Login1 = (props)=>{
   
     const {value:enteredEmail,
@@ -40,7 +41,7 @@ const Login1 = (props)=>{
                <div className="login1Form">
                    <form onSubmit={formChangeHandler}>
                         <GoogleLogin
-                            clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
+                            clientId={clientId}
                             buttonText="Log in with Google"
                             
                             onSuccess={handleLogin}
