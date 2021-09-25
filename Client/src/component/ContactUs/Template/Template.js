@@ -25,7 +25,7 @@ class Template extends Component {
   componentDidMount() {
     const profileId = this.props.match.params.profileId;
     this.setState({profileId:profileId});
-    console.log(localStorage.getItem('userName'));
+  
     if(localStorage.getItem('userName')===null)
     {
       this.setState({islogin:false})
@@ -42,7 +42,7 @@ class Template extends Component {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData.post.image);
+       
         this.setState({
           image: resData.post.image,
           name: resData.post.name,
