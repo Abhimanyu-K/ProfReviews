@@ -38,6 +38,7 @@ const {value:enteredEmail,
       props.google(res);
   
     }
+    console.log(process.env.GOOGLE_KEY);
   return  (
     <div className="login1-Container">
     <div className="login1Header">
