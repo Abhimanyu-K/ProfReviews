@@ -28,7 +28,8 @@ app.use(cors({origin:"https://profreview.herokuapp.com",credentials:true}))
 app.use(cookieSession({
   maxAge:24*60*60*1000,
   keys:['sdfsdfsdvsdvdv'],
-  secure:true
+  secure:true,
+  sameSite:"none"
 }));
 
 app.use(passport.initialize());
