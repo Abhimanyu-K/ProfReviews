@@ -66,7 +66,7 @@ exports.signup = (req,res,next)=>{
             subject:'Verify your account',
             html:`
                     <p>Verify your account</p> 
-                    <p> Click this <a href="http://localhost:3000/login/${result.resetToken}">Link </a> to verify.</p>  
+                    <p> Click this <a href="https://profreview.herokuapp.com/login/${result.resetToken}">Link </a> to verify.</p>  
                 `
         });
     });
@@ -146,7 +146,7 @@ exports.reset = (req,res,next)=>{
                 subject:'Password Reset',
                 html:`
                     <p>You requested a password reset </p> 
-                    <p> Click this <a href="http://localhost:3000/auth/reset/${token}">Link </a> to set a new password.</p>  
+                    <p> Click this <a href="https://profreview.herokuapp.com/auth/reset/${token}">Link </a> to set a new password.</p>  
                 `
         })
     })
