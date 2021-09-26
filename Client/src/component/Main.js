@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef,useContext} from 'react';
 import Header from './Header/Header';
 import './Main.css';
 import Cards from './Card/Cards';
@@ -7,6 +7,7 @@ import Svg from './svg';
 import Cards1 from './Card/Cards1';
 import Footer from './Footer/Footer';
 import Rating from '../component/Rating/Rating';
+import {myContext} from '../context';
 const Main = (props)=>{
   let body = useRef();
   

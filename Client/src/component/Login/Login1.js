@@ -1,12 +1,13 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Link} from 'react-router-dom';
 import './Login1.css';
-
+import GoogleImg from '../ContactUs/Template/images/google-img.jpg';
 import useInput from '../../Hooks/use-input';
-import {GoogleLogin} from 'react-google-login';
-const clientId = "224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com";
+
+//import {GoogleLogin} from 'react-google-login';
+//const clientId = "224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com";
 const Login1 = (props)=>{
-  
+    
     const {value:enteredEmail,
        
          hasError:emailHasError,
@@ -27,9 +28,9 @@ const Login1 = (props)=>{
            //resetEmailInput();
            //resetPasswordInput();
         }
-        const handleLogin = (res)=>{
-            console.log(res, "ppp");
-            props.google(res);
+        const handleLogin = ()=>{
+            
+            props.google();
         }    
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
         
@@ -41,15 +42,10 @@ const Login1 = (props)=>{
            <div className="login1FormContainer">
                <div className="login1Form">
                    <form onSubmit={formChangeHandler}>
-                        <GoogleLogin
-                            clientId={clientId}
-                            buttonText="Log in with Google"
-                            
-                            onSuccess={handleLogin}
-                            onFailure={handleLogin}
-                            cookiePolicy={'single_host_origin'}
-                            className = "login1google1"
-                        />
+                        <div className="googleContainer" onClick = {handleLogin}>
+                            <img src={GoogleImg} alt = "Google Icon"/>
+                            <p>Login With Google</p>
+                        </div>    
                         <div className="login1Text"><span>Have a Password? Continue with your email address</span></div>
                         <div className="login1FormFill">
                             <span>Email</span>
@@ -70,3 +66,14 @@ const Login1 = (props)=>{
    );
 };
 export default Login1;
+
+/*
+<GoogleLogin
+    clientId={clientId}
+     buttonText="Log in with Google"           
+    onSuccess={handleLogin}
+    onFailure={handleLogin}
+    cookiePolicy={'single_host_origin'}
+    className = "login1google1"
+    />
+*/

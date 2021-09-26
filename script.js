@@ -9,25 +9,95 @@ const commentRoutes = require("./routes/comment");
 const compression = require("compression");
 const helemt = require("helmet");
 const app = express();
+const cors = require("cors");
 const path = require('path');
+const GoogleUser  = require('./models/GoogleAuth');
 const Profile = require("./routes/profProfiles");
 //const multer = require("multer");
 //const ProfProfile = require("./models/profprofile");
 const passport = require("passport");
+const cookieSession = require('cookie-session');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const dotenv = require("dotenv");
 dotenv.config();
 
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
 app.use(bodyParser.json()); // application/json
+
+app.use(cors({origin:"https://profreview.herokuapp.com",credentials:true}))
+app.use(cookieSession({
+  maxAge:24*60*60*1000,
+  keys:['sdfsdfsdvsdvdv'],
+  secure:true
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+
+passport.serializeUser((user,done)=>{
+  
+  return done(null,user.id);
+})
+passport.deserializeUser((id,done)=>{
+  console.log(id);
+  GoogleUser.findById(id)
+  .then(user=>{
+    console.log("found");
+    return done(null,user);
+  })
+  
+})
+
+passport.use(new GoogleStrategy({
+  clientID:`${process.env.GOOGLE_CLIENT_ID}`,
+  clientSecret:`${process.env.GOOGLE_CLIENT_SECRET}`,
+  callbackURL:"/auth/google/callback"
+},
+function(accessToken,refreshToken,profile,done)
+{
+  console.log(profile,"---");
+  GoogleUser.findOne({googleId:profile.id})
+  .then((user)=>{
+    if(user)
+    {
+      return done(null,user);
+    }
+    else{
+      const googleuser = new GoogleUser({
+        date: new Date().toISOString(),
+        name:profile.displayName,
+        googleId:profile.id,
+        image:profile.photos[0].value
+      })
+      googleuser.save()
+      .then(newUser=>{
+        console.log(newUser);
+        return done(null,newUser);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    }
+  })
+ 
+  
+}
+
+));
+
+app.get('/auth/google',passport.authenticate('google',{scope:['profile']}));
+app.get('/auth/google/callback',
+passport.authenticate('google',
+    {failureRedirect:'/login'}),
+ (req,res)=>{
+   
+  console.log(req.user);
+   res.redirect('https://profreview.herokuapp.com');
+ }
+);
+
+
 app.use('/auth',authRoutes);
 app.use(feedRoutes);
 app.use(messageRoutes);

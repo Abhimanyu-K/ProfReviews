@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment,useContext } from "react";
 import {
   Route,
   Switch,
@@ -26,6 +26,8 @@ import PostModal from "./component/PostModal/PostModal";
 import AccountVerification from "./component/AccountVerification/AccountVerification";
 import Error404 from "./component/Error404/Error404";
 import Policy from "./component/Policy/Policy";
+
+
 class App extends Component {
   state = {
     showBackdrop: false,
@@ -45,6 +47,30 @@ class App extends Component {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
     const image= localStorage.getItem("image");
+    console.log(localStorage.getItem("logout"));
+    
+    fetch("/auth/googleauth/")
+    .then(res=>{
+      if(res.status!==200)
+      {
+        return ;
+      }
+      return res.json();
+    })
+    .then(resData=>{
+      console.log(resData);
+      if(resData!==undefined)
+      {
+      this.setState({isAuth:true,image:resData.user.image})
+        localStorage.setItem("token", resData.token);
+        localStorage.setItem("userId", resData.user._id);
+        localStorage.setItem("userName", resData.user.name); 
+        localStorage.setItem("date",resData.user.date);
+        localStorage.removeItem("logout");
+      }  
+      this.props.history.replace('/');
+    })
+  
    // console.log(this.state.image,"image");
     if (!token || !expiryDate) {
       return;
@@ -69,6 +95,14 @@ class App extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
     localStorage.removeItem("image");
+    fetch("/auth/logout/")
+    .then(res=>{
+      localStorage.setItem("logout",1);
+   
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   };
   loginHandler = (event, authData) => {
     event.preventDefault();
@@ -323,9 +357,12 @@ class App extends Component {
         console.log(err);
       });
   };
-  googleHandler = (res)=>{
-    console.log("hello")
-    const result = res.profileObj;
+  googleHandler = ()=>{
+   
+    window.open('https://profreview.herokuapp.com/auth/google',"_self");
+    
+    
+    /*const result = res.profileObj;
     const token = res.tokenId;
     console.log(result, token);
     fetch("/auth/api/v1/auth/google",{
@@ -356,7 +393,7 @@ class App extends Component {
           );
           localStorage.setItem("expiryDate", expiryDate.toISOString());
         this.props.history.push("/");
-      })        
+      })    */    
   }
   
   ratingHandler=(event,resData)=>{

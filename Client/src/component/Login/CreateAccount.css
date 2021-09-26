@@ -3,6 +3,30 @@
   top: 2rem;
   width: 19rem;
 }
+.googleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  background: #4385f4;
+  position: relative;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.googleContainer img {
+  width: 12.5%;
+  height: 100%;
+  object-fit: contain;
+  left: 10px;
+  border-radius: 3px;
+  position: absolute;
+}
+
 .createFormFill span {
   position: relative;
   float: left;

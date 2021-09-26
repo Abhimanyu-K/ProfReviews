@@ -4,10 +4,8 @@ const User = require('../models/user');
 const {OAuth2Client} = require('google-auth-library');
 const authController = require('../controllers/auth');
 const router = express.Router();
-const GoogleUser = require('../models/GoogleAuth');
 const jwt = require('jsonwebtoken');
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-const passport = require("passport");
+
 router.put('/signup',
 [
         body('email')
@@ -29,6 +27,28 @@ router.put('/signup',
 
 ],
 authController.signup);
+
+router.get('/googleauth/',(req,res)=>{
+    console.log(req.user,"why");
+    if(req.user!==undefined)
+    {
+        const token = jwt.sign({
+            googleId:req.user.googleId,
+            userId:req.user._id.toString()
+        },
+        'somesupersecret',
+        {expiresIn:'1h'})
+        res.status(200).json({user:req.user,token:token});
+    }
+
+    
+})
+router.get('/logout/',(req,res)=>{
+    req.logOut();
+    console.log(req.user,"logout");
+    res.status(200).json({user:req.user});
+})
+/*
 router.put('/api/v1/auth/google',async (req,res)=>{
     const token = req.body.token;
     console.log(token);
@@ -82,7 +102,7 @@ router.put('/api/v1/auth/google',async (req,res)=>{
     
     
 })
-          
+  */        
 router.post('/login',authController.login);
 router.post('/reset',authController.reset);
 router.post('/reset/:token',authController.newPassword);

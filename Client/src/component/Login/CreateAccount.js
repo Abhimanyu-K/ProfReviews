@@ -2,8 +2,8 @@ import React from 'react';
 import './CreateAccount.css';
 import useInput from '../../Hooks/use-input';
 import {Link} from 'react-router-dom';
+import GoogleImg from '../ContactUs/Template/images/google-img.jpg';
 
-import {GoogleLogin} from 'react-google-login';
 const CreateAccount = (props)=>{
   
   const {value:enteredName,
@@ -34,8 +34,8 @@ const {value:enteredEmail,
      event.preventDefault();
     props.onsignup(event,{email:enteredEmail,password:enteredPassword,name:enteredName,confirmPassword:enteredPassword1});
     }
-    const handleLogin = (res)=>{
-      props.google(res);
+    const handleLogin = ()=>{
+      props.google();
   
     }
     console.log(process.env.GOOGLE_CLIENT_ID);
@@ -47,16 +47,10 @@ const {value:enteredEmail,
     <div className="login1FormContainer">
         <div className="login1Form">
             <form onSubmit={formsubmitHandler}>
-                <GoogleLogin
-                    clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
-                    buttonText="Log in with Google"
-                   
-                    onSuccess={handleLogin}
-                    onFailure={handleLogin}
-                    cookiePolicy={'single_host_origin'}
-                    className = "login1google1"
-                />
-               
+            <div className="googleContainer" onClick = {handleLogin}>
+                <img src={GoogleImg} alt = "Google Icon"/>
+                <p>Login With Google</p>
+            </div>
                  <div className="login1Text"><span>or enter your email address</span></div>
                  <div className="createFormFill">
                  <span>Full Name</span>
