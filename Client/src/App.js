@@ -237,7 +237,7 @@ class App extends Component {
         return res.json();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err,"*");
         this.setState({
           isAuth: false,
           authLoading: false,
