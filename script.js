@@ -25,6 +25,7 @@ dotenv.config();
 app.use(bodyParser.json()); // application/json
 
 app.use(cors({origin:'*',credentials:true}))
+app.enable("trust proxy");
 app.use(cookieSession({
   maxAge:24*60*60*1000,
   keys:['sdfsdfsdvsdvdv'],
