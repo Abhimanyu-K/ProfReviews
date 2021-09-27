@@ -27,7 +27,7 @@ const Main = (props)=>{
                 <div className='sp2'>Research Enthusiast</div>
                 <br></br>
                 <br></br>
-                <span className='sp3'>Here we provide Students best research faculty </span>
+                <span className='sp3'>Share experiences of working with professors</span>
                 <br></br>
                 <span className='sp3'>allover india.</span>
           </div>
