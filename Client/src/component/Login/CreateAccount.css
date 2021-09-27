@@ -60,6 +60,12 @@
 
   text-align: center;
 }
+.login1google1 {
+  cursor: pointer;
+  width: 19rem;
+
+  text-align: center;
+}
 
 @media (max-width: 460px) {
   .createFormFill span {

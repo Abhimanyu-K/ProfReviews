@@ -285,6 +285,7 @@
     top: 5rem;
   }
 }
+<<<<<<< HEAD:Client/src/component/ContactUs/Template/Template.css
 @media (max-width: 530px) {
   .comment-form-textarea {
     width: 80%;
@@ -340,3 +341,57 @@
     font-size: 0.9rem;
   }
 }
+||||||| 78a714d:prof/src/component/ContactUs/Template/Template.css
+=======
+@media (max-width: 530px) {
+  .template-header-link1 span {
+    font-size: 1.5rem;
+  }
+  .template-header-link2 span {
+    font-size: 1.5rem;
+  }
+  .templateResearchFaculty p {
+    font-size: 2rem;
+  }
+  .templateContent1 img {
+    width: 7rem;
+    height: 7rem;
+    position: relative;
+    left: 0;
+    top: -1rem;
+    border-radius: 5px;
+  }
+  .templateContent1 p {
+    font-size: 1.1rem;
+    position: relative;
+    left: 0;
+  }
+  .templateContent1 span {
+    font-size: 1.1rem;
+    position: relative;
+    left: 0;
+  }
+  .templateContent1 .spn_domain1 {
+    font-size: 0.85rem;
+  }
+  .templateContent2 span {
+    font-size: 1.1rem;
+    position: relative;
+    left: 0;
+    top: 0.6rem;
+  }
+  .templateContent2 p {
+    font-size: 0.6rem;
+    position: relative;
+    left: 1rem;
+  }
+  .templateContent2Links {
+    font-size: 1.2rem;
+  }
+  .templateContent2 ul li {
+    position: relative;
+    left: 0rem;
+    font-size: 0.9rem;
+  }
+}
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/ContactUs/Template/Template.css

@@ -2,14 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Post = require('../models/post');
 const googleUserSchema  = new Schema({
+    email:{
+        type:String,
+        required:true
+    },
     date:{
         type:String,
         required:true
     },
-    googleId:{
-        type:String,
-        required:true
-    },
+    resetToken: String,
+    resetTokenExpiration: Date,
     name:{
         type:String,
         required:true

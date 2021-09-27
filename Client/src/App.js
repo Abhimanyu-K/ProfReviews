@@ -23,11 +23,17 @@ import Search from "./component/Search/Search";
 import Template from './component/ContactUs/Template/Template';
 import CreatePost from "./component/CreatePost/CreatePost";
 import PostModal from "./component/PostModal/PostModal";
+<<<<<<< HEAD:Client/src/App.js
 import AccountVerification from "./component/AccountVerification/AccountVerification";
 import Error404 from "./component/Error404/Error404";
 import Policy from "./component/Policy/Policy";
 
 
+||||||| 78a714d:prof/src/App.js
+=======
+import AccountVerification from "./component/AccountVerification/AccountVerification";
+import { CloseOutlined } from "@material-ui/icons";
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
 class App extends Component {
   state = {
     showBackdrop: false,
@@ -40,12 +46,18 @@ class App extends Component {
     authLoading: false,
     error: null,
     userName: "",
+<<<<<<< HEAD:Client/src/App.js
     image:null,
     buttonValue:null
+||||||| 78a714d:prof/src/App.js
+=======
+    image:null
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
+<<<<<<< HEAD:Client/src/App.js
     const image= localStorage.getItem("image");
     console.log(localStorage.getItem("logout"));
     
@@ -75,6 +87,11 @@ class App extends Component {
     })
   
    // console.log(this.state.image,"image");
+||||||| 78a714d:prof/src/App.js
+=======
+    const image= localStorage.getItem("image");
+   // console.log(this.state.image,"image");
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
     if (!token || !expiryDate) {
       return;
     }
@@ -96,6 +113,7 @@ class App extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
+<<<<<<< HEAD:Client/src/App.js
     localStorage.removeItem("userName");
     localStorage.removeItem("image");
     fetch("/auth/logout/")
@@ -106,6 +124,11 @@ class App extends Component {
     .catch(err=>{
       console.log(err);
     })
+||||||| 78a714d:prof/src/App.js
+=======
+    localStorage.removeItem("userName");
+    localStorage.removeItem("image");
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
   };
   loginHandler = (event, authData) => {
     event.preventDefault();
@@ -360,6 +383,7 @@ class App extends Component {
         console.log(err);
       });
   };
+<<<<<<< HEAD:Client/src/App.js
   googleHandler = ()=>{
    
     window.open('https://profreview.herokuapp.com/auth/google',"_self");
@@ -433,6 +457,74 @@ class App extends Component {
       this.setState({buttonValue:eve});
       this.props.history.push("/search");
   }
+||||||| 78a714d:prof/src/App.js
+=======
+  googleHandler = (res)=>{
+    console.log("hello")
+    const result = res.profileObj;
+    const token = res.tokenId;
+    console.log(result, token);
+    fetch("http://localhost:8080/auth/api/v1/auth/google",{
+     method:"PUT",
+     headers:{
+        "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+        token:token
+        })
+       })
+       .then(res=>{
+        return res.json();
+      })
+      .then(resData=>{
+        console.log(resData);
+        this.setState({isAuth:true,image:resData.picture})
+        localStorage.setItem("image",resData.picture);
+        localStorage.setItem("token", resData.token);
+        localStorage.setItem("userId", resData.userId);
+        localStorage.setItem("userName", resData.userName);
+        
+        localStorage.setItem("date",resData.date);
+        
+        const remainingMilliseconds = 60 * 60 * 1000;
+          const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+          );
+          localStorage.setItem("expiryDate", expiryDate.toISOString());
+        this.props.history.push("/");
+      })        
+  }
+  ratingHandler=(event,resData)=>{
+    event.preventDefault()
+    fetch("http://localhost:8080/rating",{
+      method:'POST',
+      headers: {
+          "Content-Type": "application/json",
+        },
+      body:JSON.stringify({
+          message:resData.message,
+          rating:resData.currentValue,
+          user:localStorage.getItem("userName")
+      })  
+  })
+  .then(res=>{
+      if(res.status!==201)
+      {
+          console.log("something went Wrong");
+          return;
+      }
+      return res.json();
+  })
+  .then(resData=>{
+      
+      window.location.reload(true);
+      
+  })
+  .catch(err=>{
+      console.log(err);
+  })
+  }
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
   homeHandler = ()=>{
     this.setState({postCreated:false});
   }
@@ -455,7 +547,13 @@ class App extends Component {
           path="/"
           exact
           render={(props) => (
+<<<<<<< HEAD:Client/src/App.js
             <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth} rating = {this.ratingHandler} button = {this.buttonHandler}/>
+||||||| 78a714d:prof/src/App.js
+            <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth} />
+=======
+            <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth} rating = {this.ratingHandler}/>
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
           )}
         />
         
@@ -550,7 +648,13 @@ class App extends Component {
             path="/"
             exact
             render={(props) => (
+<<<<<<< HEAD:Client/src/App.js
               <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth}  rating = {this.ratingHandler} url = {this.state.image} />
+||||||| 78a714d:prof/src/App.js
+              <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth} />
+=======
+              <Main onLogout={this.logoutHandler} isAuth={this.state.isAuth}  rating = {this.ratingHandler} url = {this.state.image}/>
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/App.js
             )}
           />
           <Route path="/dashboard" exact render={(props)=><Dashboard onDelete = {this.deleteHandler}/>}/>

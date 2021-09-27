@@ -80,8 +80,16 @@
 }
 .aboutUsAshish {
   height: 50vh;
+<<<<<<< HEAD:Client/src/component/AboutUs/AboutUs.css
   width: 55%;
   background: rgb(236, 232, 232);
+||||||| 78a714d:prof/src/component/AboutUs/AboutUs.css
+  width: 65%;
+  background: rgb(255, 255, 255);
+=======
+  width: 55%;
+  background: rgb(255, 255, 255);
+>>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/AboutUs/AboutUs.css
   position: relative;
   top: 5rem;
   border-radius: 5px;
