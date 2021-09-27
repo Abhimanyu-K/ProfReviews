@@ -1,3 +1,3 @@
 # ProfReview
 
-This project can we viewed at Profreview.herokuapp.com
+This project can we viewed at [https://profreview.herokuapp.com/](https://profreview.herokuapp.com/)
