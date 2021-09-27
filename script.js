@@ -24,7 +24,7 @@ dotenv.config();
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
 app.use(bodyParser.json()); // application/json
 
-app.use(cors({origin:"https://profreview.herokuapp.com",credentials:true}))
+app.use(cors({origin:*,credentials:true}))
 app.use(cookieSession({
   maxAge:24*60*60*1000,
   keys:['sdfsdfsdvsdvdv'],
