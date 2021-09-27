@@ -70,6 +70,9 @@ class App extends Component {
       }  
       this.props.history.replace('/');
     })
+    .catch(err=>{
+      console.log(err);
+    })
   
    // console.log(this.state.image,"image");
     if (!token || !expiryDate) {

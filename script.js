@@ -89,7 +89,7 @@ function(accessToken,refreshToken,profile,done)
 ));
 
 app.get('/auth/google',passport.authenticate('google',{scope:['profile']}));
-app.get('https://profreview.herokuapp.com/auth/google/callback',
+app.get('/auth/google/callback',
 passport.authenticate('google'),
  (req,res)=>{
    
