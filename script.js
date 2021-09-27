@@ -106,7 +106,7 @@ app.use(ratingRoutes);
 app.use(Profile);
 app.use(commentRoutes);
 
-app.use(helemt());
+app.use(helemt({contentSecurityPolicy:false,}));
 app.use(compression());
 
 app.use((error,req,res,next)=>{
