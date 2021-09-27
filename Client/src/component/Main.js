@@ -22,7 +22,7 @@ const Main = (props)=>{
      <div className='front-part'>
       
           <div className='text'>
-                <div className='sp1'>The great place</div>
+                <div className='sp1'>Learn from experiences of</div>
                 <br></br>
                 <div className='sp2'>Research Enthusiast</div>
                 <br></br>
