@@ -1,63 +1,72 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './Login1.css';
-<<<<<<< HEAD:Client/src/component/Login/Login1.js
-import GoogleImg from '../ContactUs/Template/images/google-img.jpg';
-||||||| 78a714d:prof/src/component/Login/Login1.js
-=======
 import { useHistory } from 'react-router-dom';
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/Login1.js
 import useInput from '../../Hooks/use-input';
-<<<<<<< HEAD:Client/src/component/Login/Login1.js
-
-//import {GoogleLogin} from 'react-google-login';
-//const clientId = "224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com";
-const Login1 = (props)=>{
-    
-||||||| 78a714d:prof/src/component/Login/Login1.js
-const Login1 = (props)=>{
-
-=======
 import {GoogleLogin} from 'react-google-login';
 const Login1 = (props)=>{
     const history = useHistory();
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/Login1.js
     const {value:enteredEmail,
-       
+        isValid:enteredEmailIsValid,
          hasError:emailHasError,
          valueChangeHandler:emailChangeHandler,
-         inputBlurHandler:emailBlurHandler
-       } = useInput((value)=>value.includes('@'));  
+         inputBlurHandler:emailBlurHandler,
+         reset:resetEmailInput} = useInput((value)=>value.includes('@'));  
 
     const {value:enteredPassword,
-         
+            isValid:enteredPasswordIsValid,
             hasError:passwordHasError,
             valueChangeHandler:passwordChangeHandler,
-            inputBlurHandler:passwordBlurHandler
-        } = useInput((value)=>value.trim().length>=6);
+            inputBlurHandler:passwordBlurHandler,
+            reset:resetPasswordInput} = useInput((value)=>value.trim().length>=6);
     const formChangeHandler = (event)=>{
-           event.preventDefault();
-           props.onLogin(event,{email:enteredEmail,password:enteredPassword})   
            
+           /*if(!enteredEmailIsValid && !enteredPasswordIsValid)
+           {
+               return;
+           }*/ 
+           props.onLogin(event,{email:enteredEmail,password:enteredPassword})    
            //resetEmailInput();
            //resetPasswordInput();
         }
-<<<<<<< HEAD:Client/src/component/Login/Login1.js
-        const handleLogin = ()=>{
-            
-            props.google();
-        }    
-||||||| 78a714d:prof/src/component/Login/Login1.js
-=======
-        const handleLogin = (res)=>{
+        const handleLogin = async (res)=>{
       
-            props.google(res);
+            const result = res.profileObj;
+            const token = res.tokenId;
+            console.log(result, token);
+            
+            fetch("http://localhost:8080/auth/api/v1/auth/google",{
+              method:"PUT",
+              headers:{
+                "Content-Type":"application/json"
+              },
+              body:JSON.stringify({
+                token:token
+              })
+            })
+            .then(res=>{
+              return res.json();
+            })
+            .then(resData=>{
+            
+              localStorage.setItem("token", resData.token);
+              localStorage.setItem("userId", resData.userId);
+              localStorage.setItem("userName", resData.userName);
+              localStorage.setItem("image",resData.picture);
+              localStorage.setItem("date",resData.date);
+              localStorage.setItem("google",resData.exist);
+              const remainingMilliseconds = 60 * 60 * 1000;
+                const expiryDate = new Date(
+                new Date().getTime() + remainingMilliseconds
+                );
+                localStorage.setItem("expiryDate", expiryDate.toISOString());
+              history.push("/");
+            })
       
       
           }    
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/Login1.js
         const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
-        
+        const inputPasswordClass = passwordHasError ? 'form-control invalid': 'form-control';             
    return (
        <div className="login1-Container">
            <div className="login1Header">
@@ -66,16 +75,6 @@ const Login1 = (props)=>{
            <div className="login1FormContainer">
                <div className="login1Form">
                    <form onSubmit={formChangeHandler}>
-<<<<<<< HEAD:Client/src/component/Login/Login1.js
-                        <div className="googleContainer" onClick = {handleLogin}>
-                            <img src={GoogleImg} alt = "Google Icon"/>
-                            <p>Login With Google</p>
-                        </div>    
-||||||| 78a714d:prof/src/component/Login/Login1.js
-                       <div className="login1facebook"> <a href="/" className='social'>  <i className="fa fa-facebook"></i><span>Continue with Facebook</span></a></div>
-                       <div className="login1google">   <a href="/" className='social'>  <i className="fa fa-google"></i></a><span>Continue with Google</span></div>
-                       <div className="login1github"><a href="/" className='social'>  <i className="fa fa-github"></i></a><span>Continue with Github</span></div>
-=======
                         <GoogleLogin
                             clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
                             buttonText="Log in with Google"
@@ -85,7 +84,6 @@ const Login1 = (props)=>{
                             cookiePolicy={'single_host_origin'}
                             className = "login1google1"
                         />
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/Login1.js
                         <div className="login1Text"><span>Have a Password? Continue with your email address</span></div>
                         <div className="login1FormFill">
                             <span>Email</span>
@@ -106,14 +104,3 @@ const Login1 = (props)=>{
    );
 };
 export default Login1;
-
-/*
-<GoogleLogin
-    clientId={clientId}
-     buttonText="Log in with Google"           
-    onSuccess={handleLogin}
-    onFailure={handleLogin}
-    cookiePolicy={'single_host_origin'}
-    className = "login1google1"
-    />
-*/

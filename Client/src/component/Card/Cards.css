@@ -165,7 +165,7 @@
     left: 7rem;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 420px) {
   .card {
     width: 200px;
   }

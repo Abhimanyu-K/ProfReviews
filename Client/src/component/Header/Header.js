@@ -86,7 +86,6 @@ const Header = (props) => {
               <ProfileDropDown
                 onLogout={props.onLogout}
                 userName={props.userName}
-                url = {props.url}
               />
             </li>
           )}

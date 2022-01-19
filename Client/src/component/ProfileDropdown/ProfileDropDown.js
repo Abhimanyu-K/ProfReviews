@@ -4,34 +4,18 @@ import {Link} from 'react-router-dom';
 import profileImage from '../ContactUs/Template/images/profileImage.png'
 const ProfileDropDown = (props)=>{
     const showProfile = useRef();
-<<<<<<< HEAD:Client/src/component/ProfileDropdown/ProfileDropDown.js
-    const url = props.url
+    const url = localStorage.getItem("image");
     
     let image = ""
-    if(url!==null){
-      console.log(url);
+    if(url){
       image = url;
     }
     else{
       image = profileImage;
     }
     const userName  = localStorage.getItem("userName");
-||||||| 78a714d:prof/src/component/ProfileDropdown/ProfileDropDown.js
-=======
-    const url = props.url
-    console.log(url,"url");
-    let image = ""
-    if(url!==null){
-      console.log(url);
-      image = url;
-    }
-    else{
-      image = profileImage;
-    }
-    const userName  = localStorage.getItem("userName");
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/ProfileDropdown/ProfileDropDown.js
     const profileHandler = ()=>{
-     
+        console.log(showProfile.current);
         showProfile.current.classList.toggle('active');
     }
       return(

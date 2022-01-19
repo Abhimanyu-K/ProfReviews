@@ -51,7 +51,7 @@ function Rating(props) {
   return (
     <React.Fragment>
         <div className="rating-conatiner">
-        <div className="rating-star-container" ref={props.body}>
+        <div className="rating-star-container">
               <h2> Rate Us </h2>
         </div>
         <form onSubmit={formSubmitHandler} className="rating-form">

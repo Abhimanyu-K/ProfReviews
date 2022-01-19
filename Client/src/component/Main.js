@@ -1,33 +1,26 @@
-import React,{useRef,useContext} from 'react';
+import React,{useRef} from 'react';
 import Header from './Header/Header';
 import './Main.css';
 import Cards from './Card/Cards';
 import Svg from './svg';
-//import { Link } from 'react-router-dom';
 import Cards1 from './Card/Cards1';
 import Footer from './Footer/Footer';
 import Rating from '../component/Rating/Rating';
-import {myContext} from '../context';
 const Main = (props)=>{
   let body = useRef();
-  
-  const buttonHandler = (event)=>{
-    props.button(event.target.value);
-     
-  }
+  const userName = localStorage.getItem('userName');
+  return <div className='home' ref={body}>
 
-  return (<div className='home' ref={body}>
-       
-     <Header  body = {body} onLogout = {props.onLogout} isAuth={props.isAuth} userName={props.userName} url = {props.url}/>
+     <Header  body = {body} onLogout = {props.onLogout} isAuth={props.isAuth} userName={props.userName}/>
      <div className='front-part'>
       
           <div className='text'>
-                <div className='sp1'>Learn from experiences of</div>
+                <div className='sp1'>The great place</div>
                 <br></br>
                 <div className='sp2'>Research Enthusiast</div>
                 <br></br>
                 <br></br>
-                <span className='sp3'>Share experiences of working with professors</span>
+                <span className='sp3'>Here we provide Students best research faculty </span>
                 <br></br>
                 <span className='sp3'>allover india.</span>
           </div>
@@ -38,7 +31,7 @@ const Main = (props)=>{
     
      </div>
      <div className='front-part1'>
-        <h2 className='front-part1-headline'>Professor Mania</h2>
+     <h2 className='front-part1-headline'>Professor Mania</h2>
      <div className='front-part1-cards'>
        <Cards/>
        </div> 
@@ -51,29 +44,29 @@ const Main = (props)=>{
       <div className="alignbtns">
         <p className="btn-para">Most Visited Topic Page</p>
         <div className="button-div">
-          <button className="btn1" onClick={buttonHandler} value="Cloud">Cloud</button>
-          <button className="btn2" onClick={buttonHandler} value="graph theory">Graph theory</button>
-          <button className="btn3" onClick={buttonHandler} value="machine learning">Machine learning</button>
-          <button className="btn4" onClick={buttonHandler} value="artificial intelligence">Artificial Intelligence</button>
-          
+        <button className="btn1">Physics</button>
+        <button className="btn2">Maths</button>
+        <button className="btn3">Machine learning</button>
+        <button className="btn4">Artificial Intelligence</button>
+        
         </div>
       </div>
-    </div>
-    <div className="rating-div-parent">
+     </div>
+     <div className="rating-div-parent">
         <div className="rating-div">
-            <Rating isAuth = {props.isAuth} rating = {props.rating} body={body}/>
+            <Rating isAuth = {props.isAuth} rating = {props.rating}/>
         </div>
-    </div>
-    <div className='front-part2'>
-      <h2 className='front-part2-headline'>Testimonials</h2>
-      <p className='front-part2-para'>Aur latest Reviews</p>
-      <div className='front-part2-cards'>
+     </div>
+     <div className='front-part2'>
+     <h2 className='front-part2-headline'>Testimonials</h2>
+     <p className='front-part2-para'>Aur latest Reviews</p>
+     <div className='front-part2-cards'>
         <Cards1></Cards1>
-      </div> 
-    </div>
+       </div> 
+     </div>
 
      <Footer/>
      
-  </div>);
+     </div>
 }
 export default Main;

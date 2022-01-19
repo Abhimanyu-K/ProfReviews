@@ -3,10 +3,10 @@ import './Profile.css';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import profileImage from '../ContactUs/Template/images/profileImage.png'
-const Profile = (props)=>{
+const Profile = ()=>{
     const userName = localStorage.getItem('userName');
     let date = localStorage.getItem('date');
-    const url =  props.url;
+    const url = localStorage.getItem("image");
     let image = ""
     if(url){
       image = url;

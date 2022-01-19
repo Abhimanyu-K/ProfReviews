@@ -2,71 +2,82 @@ import React,{useState} from 'react';
 import './CreateAccount.css';
 import useInput from '../../Hooks/use-input';
 import {Link} from 'react-router-dom';
-<<<<<<< HEAD:Client/src/component/Login/CreateAccount.js
-import GoogleImg from '../ContactUs/Template/images/google-img.jpg';
-
-||||||| 78a714d:prof/src/component/Login/CreateAccount.js
-=======
 import { useHistory } from 'react-router-dom';
 import {GoogleLogin} from 'react-google-login';
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/CreateAccount.js
 const CreateAccount = (props)=>{
-<<<<<<< HEAD:Client/src/component/Login/CreateAccount.js
-  
-||||||| 78a714d:prof/src/component/Login/CreateAccount.js
-=======
   const [data,setData] = useState([]);
   let history = useHistory();
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/CreateAccount.js
   const {value:enteredName,
-  
+    isValid:enterednameIsValid,
+     hasError:inputHasError,
      valueChangeHandler:nameChangeHandler,
-     inputBlurHandler:nameBlurHandler
-     } = useInput((value)=>value.trim()!=='');
+     inputBlurHandler:nameBlurHandler,
+      reset:resetNameInput} = useInput((value)=>value.trim()!=='');
 
 const {value:enteredEmail,
-     
+     isValid:enteredEmailIsValid,
+      hasError:emailHasError,
       valueChangeHandler:emailChangeHandler,
-      inputBlurHandler:emailBlurHandler
-    } = useInput((value)=>value.includes('@'));    
+      inputBlurHandler:emailBlurHandler,
+      reset:resetEmailInput} = useInput((value)=>value.includes('@'));    
 
       const {value:enteredPassword,
-        
+         isValid:enteredPasswordIsValid,
+          hasError:passwordHasError,
           valueChangeHandler:passwordChangeHandler,
-          inputBlurHandler:passwordBlurHandler
-          } = useInput((value)=>value.trim().length>=8);  
+          inputBlurHandler:passwordBlurHandler,
+           reset:resetPasswordInput} = useInput((value)=>value.trim().length>=8);  
       const {value:enteredPassword1,
-         
+          isValid:enteredPasswordIsValid1,
+            hasError:passwordHasError1,
            valueChangeHandler:passwordChangeHandler1,
-           inputBlurHandler:passwordBlurHandler1
-           } = useInput((value)=>value.trim().length>=8);  
+           inputBlurHandler:passwordBlurHandler1,
+             reset:resetPasswordInput1} = useInput((value)=>value.trim().length>=8);  
      
    const formsubmitHandler = (event)=>{
-<<<<<<< HEAD:Client/src/component/Login/CreateAccount.js
-    
-||||||| 78a714d:prof/src/component/Login/CreateAccount.js
-=======
-    props.google(true);
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/CreateAccount.js
      event.preventDefault();
-    props.onsignup(event,{email:enteredEmail,password:enteredPassword,name:enteredName,confirmPassword:enteredPassword1});
+     console.log(enteredEmail);
+             props.onsignup(event,{email:enteredEmail,password:enteredPassword,name:enteredName,confirmPassword:enteredPassword1});
     }
-    const handleLogin = ()=>{
-      props.google();
-  
-    }
-<<<<<<< HEAD:Client/src/component/Login/CreateAccount.js
-    console.log(process.env.GOOGLE_CLIENT_ID);
-||||||| 78a714d:prof/src/component/Login/CreateAccount.js
-=======
     const handleLogin = (res)=>{
-      props.google(res);
-  
+      props.google(true);
+      const result = res.profileObj;
+      const token = res.tokenId;
+      console.log(result, token);
+      
+      fetch("http://localhost:8080/auth/api/v1/auth/google",{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          token:token
+        })
+      })
+      .then(res=>{
+        return res.json();
+      })
+      .then(resData=>{
+        console.log(resData);
+        localStorage.setItem("token", resData.token);
+        localStorage.setItem("userId", resData.userId);
+        localStorage.setItem("userName", resData.userName);
+        localStorage.setItem("image",resData.picture);
+        localStorage.setItem("date",resData.date);
+        localStorage.setItem("google",resData.exist);
+        const remainingMilliseconds = 60 * 60 * 1000;
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
+        localStorage.setItem("expiryDate", expiryDate.toISOString());
+        history.push("/");
+      })
+
+
     }
     const hello = ()=>{
       console.log("hi");
     }
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/CreateAccount.js
   return  (
     <div className="login1-Container">
     <div className="login1Header">
@@ -75,16 +86,6 @@ const {value:enteredEmail,
     <div className="login1FormContainer">
         <div className="login1Form">
             <form onSubmit={formsubmitHandler}>
-<<<<<<< HEAD:Client/src/component/Login/CreateAccount.js
-            <div className="googleContainer" onClick = {handleLogin}>
-                <img src={GoogleImg} alt = "Google Icon"/>
-                <p>Login With Google</p>
-            </div>
-||||||| 78a714d:prof/src/component/Login/CreateAccount.js
-                <div className="login1facebook"> <a href="/" className='social'>  <i className="fa fa-facebook"></i><span>Continue with Facebook</span></a></div>
-                <div className="login1google">   <a href="/" className='social'>  <i className="fa fa-google"></i></a><span>Continue with Google</span></div>
-                <div className="login1github"><a href="/" className='social'>  <i className="fa fa-github"></i></a><span>Continue with Github</span></div>
-=======
                 <GoogleLogin
                     clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
                     buttonText="Log in with Google"
@@ -95,7 +96,6 @@ const {value:enteredEmail,
                     className = "login1google1"
                 />
                
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/Login/CreateAccount.js
                  <div className="login1Text"><span>or enter your email address</span></div>
                  <div className="createFormFill">
                  <span>Full Name</span>

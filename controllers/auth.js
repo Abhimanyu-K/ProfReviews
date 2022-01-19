@@ -63,27 +63,16 @@ exports.signup = (req,res,next)=>{
         return transporter.sendMail({
             to:result.email,
             from:'ash569sharma@gmail.com',
-<<<<<<< HEAD:controllers/auth.js
             subject:'Verify your account',
             html:`
                     <p>Verify your account</p> 
                     <p> Click this <a href="https://profreview.herokuapp.com/login/${result.resetToken}">Link </a> to verify.</p>  
                 `
-||||||| 78a714d:backend1/controllers/auth.js
-            subject:'Signup succeeded!',
-            html:'<h1>You successfully signed up!</h1>'
-=======
-            subject:'Verify your account',
-            html:`
-                    <p>Verify your account</p> 
-                    <p> Click this <a href="http://localhost:3000/login/${result.resetToken}">Link </a> to verify.</p>  
-                `
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:backend1/controllers/auth.js
         });
     });
     })
     .catch(err=>{
-        console.log(error);
+        console.log(err);
     });
 };
 exports.login = (req,res,next)=>{
@@ -133,8 +122,8 @@ exports.reset = (req,res,next)=>{
        if(err)
        {
             const error = new Error('Error accured');
-            error.statusCode(500);
-            throw err;   
+            error.statusCode = 500;
+            throw errow;   
        }
        const token  = buffer.toString('hex');
        User.findOne({email:req.body.email})
@@ -202,3 +191,24 @@ exports.newPassword = (req,res,next)=>{
     });
 
 }
+/*
+getData = ()=>{
+    return new Promise((resolve,reject)=>{
+        try{
+            let body = "";
+            req.on("data",(chunk)=>{
+                body+chunk.toString();
+            });
+            req.on("end",()=>{
+                resolve(data);
+            })
+        }
+        catch(error){
+
+        }
+        
+
+    })
+}
+if(req.url.match(/\/api\/todos\/([0-9]+)/))
+*/

@@ -26,7 +26,7 @@
   z-index: -1;
 
   height: 100vh;
-  background: #ffffff;
+  background: #f1edeb;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -63,7 +63,7 @@
   width: 100%;
   text-align: center;
   height: 80vh;
-  background: #ffffff;
+  background: #f1edeb;
 }
 .aboutUsLowerBody span {
   font-size: 4rem;
@@ -80,16 +80,8 @@
 }
 .aboutUsAshish {
   height: 50vh;
-<<<<<<< HEAD:Client/src/component/AboutUs/AboutUs.css
-  width: 55%;
-  background: rgb(236, 232, 232);
-||||||| 78a714d:prof/src/component/AboutUs/AboutUs.css
   width: 65%;
   background: rgb(255, 255, 255);
-=======
-  width: 55%;
-  background: rgb(255, 255, 255);
->>>>>>> 5ff42e35541aa7b47d080c7a39a5ec48d9329c6b:prof/src/component/AboutUs/AboutUs.css
   position: relative;
   top: 5rem;
   border-radius: 5px;
@@ -188,7 +180,7 @@
     margin: 0;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 520px) {
   .aboutUsText span {
     font-size: 3.6rem;
   }
@@ -202,40 +194,24 @@
   .aboutUsLowerBody span {
     font-size: 2.5rem;
   }
-  .aboutUsAshish {
-    height: 50vh;
-  }
+
   .aboutUsAshish p {
-    font-size: 1.2rem;
-  }
-  .aboutUsAshish ul li:nth-child(2) {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
   .AshishInfo p {
     font-size: 1rem;
-    top: 7rem;
-    text-align: left;
+    top: 9rem;
+    text-align: cneter;
   }
 
-  .AshishInfo ul li i {
+  .AshishInfo ul li {
     position: relative;
-    top: 2rem;
-    left: 0rem;
-    font-size: 3rem;
-  }
-  .AshishInfo ul li i:nth-child(1) {
-    position: relative;
-    top: 2rem;
-  }
-  .AshishInfo ul li:nth-child(1) {
-    font-size: 4rem;
-    position: relative;
-    left: -9rem;
+    top: 4rem;
+    left: -10rem;
   }
   .AshishInfo ul li:nth-child(2) {
     position: relative;
-    top: -5.3rem;
+    top: -1.5rem;
     left: -1rem;
-    font-size: 4rem;
   }
 }
