@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, useState} from 'react';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
@@ -12,7 +12,7 @@ class Dashboard extends Component{
     };
     componentDidMount(){
         const userId = localStorage.getItem('userId');
-        fetch('/feed/posts')
+        fetch('http://localhost:8080/feed/posts')
         .then(res=>{
             if(res.status!==200){
                 return;
@@ -20,16 +20,16 @@ class Dashboard extends Component{
             return res.json();
         })
         .then(resData=>{
-           
+            console.log("web");
             const updatedPosts = resData.posts.filter(post=>post.userId===userId);
-           
+            console.log(updatedPosts);
             this.setState({posts:updatedPosts});
         })
         .catch(err=>{
             console.log(err);
 
         })
-        
+        console.log(this.state.posts);
         if(this.state.posts.length>0)
         {
             console.log(this.state.posts);
@@ -37,8 +37,8 @@ class Dashboard extends Component{
         }
     }
     deletePostHandler=(eve)=>{
-     
-        fetch('/feed/post/'+eve,{
+        console.log(eve);
+        fetch('http://localhost:8080/feed/post/'+eve,{
             method:'DELETE'
         })
         .then(res=>{
@@ -52,14 +52,14 @@ class Dashboard extends Component{
         })
         .then(resData=>{
             this.callBack();
-           
+            console.log(this.props);
         
             
         })
     }
     callBack = ()=>{
         const userId = localStorage.getItem('userId');
-        fetch('/feed/posts')
+        fetch('http://localhost:8080/feed/posts')
         .then(res=>{
             if(res.status!==200){
                 return;
@@ -67,19 +67,19 @@ class Dashboard extends Component{
             return res.json();
         })
         .then(resData=>{
-          
+            console.log("web");
             const updatedPosts = resData.posts.filter(post=>post.userId===userId);
-           
+            console.log(updatedPosts);
             this.setState({posts:updatedPosts});
         })
         .catch(err=>{
             console.log(err);
 
         })
-     
+        console.log(this.state.posts);
         if(this.state.posts.length>0)
         {
-          
+            console.log(this.state.posts);
             this.setState({containPost:true});
         }
     }

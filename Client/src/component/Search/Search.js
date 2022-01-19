@@ -11,14 +11,11 @@ class Search extends Component {
   };
 
   render() {
-   
     return (
       <React.Fragment>
         <div className="app">
-          
           <SearchBar
             placeholder="Search By College or Domain Name... "
-            value={this.props.value}
             logo={this.getLogoHandler}
           />
         </div>

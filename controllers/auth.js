@@ -72,7 +72,7 @@ exports.signup = (req,res,next)=>{
     });
     })
     .catch(err=>{
-        console.log(error);
+        console.log(err);
     });
 };
 exports.login = (req,res,next)=>{
@@ -122,8 +122,8 @@ exports.reset = (req,res,next)=>{
        if(err)
        {
             const error = new Error('Error accured');
-            error.statusCode(500);
-            throw err;   
+            error.statusCode = 500;
+            throw errow;   
        }
        const token  = buffer.toString('hex');
        User.findOne({email:req.body.email})
@@ -191,3 +191,24 @@ exports.newPassword = (req,res,next)=>{
     });
 
 }
+/*
+getData = ()=>{
+    return new Promise((resolve,reject)=>{
+        try{
+            let body = "";
+            req.on("data",(chunk)=>{
+                body+chunk.toString();
+            });
+            req.on("end",()=>{
+                resolve(data);
+            })
+        }
+        catch(error){
+
+        }
+        
+
+    })
+}
+if(req.url.match(/\/api\/todos\/([0-9]+)/))
+*/

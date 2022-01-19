@@ -2,8 +2,7 @@ import React from "react";
 import "./AllProfile.css";
 import { Link } from "react-router-dom";
 const AllProfile = (props) => {
- 
-  const link = props.id+"/profile";
+  console.log(props.image);
   return (
     <div className="AllProfile">
       <div className="AllProfile_part1">
@@ -24,7 +23,7 @@ const AllProfile = (props) => {
         <br></br>
         <br></br>
         <br></br>
-        <Link to={link}>
+        <Link to={props.id}>
           <button>
             Click for details{" "}
             <i class="fa fa-arrow-right" aria-hidden="true"></i>

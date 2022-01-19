@@ -1,14 +1,15 @@
 import React from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
 import useInput from '../../Hooks/use-input';
 import './Reset.css';
 
 const Reset = (props)=>{
     const {value:enteredEmail,
-       
+        isValid:enteredEmailIsValid,
          hasError:emailHasError,
          valueChangeHandler:emailChangeHandler,
-         inputBlurHandler:emailBlurHandler
-        } = useInput((value)=>value.includes('@')); 
+         inputBlurHandler:emailBlurHandler,
+         reset:resetEmailInput} = useInput((value)=>value.includes('@')); 
     
     const inputEmailClass = emailHasError ?'form-control invalid': 'form-control';
     const formSubmitHandler = (event)=>{

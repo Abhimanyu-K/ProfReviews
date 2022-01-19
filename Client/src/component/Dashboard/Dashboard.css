@@ -60,20 +60,3 @@
 .dashboard-box-button button:hover {
   background: rgb(46, 78, 184);
 }
-
-@media (max-width: 520px) {
-  .dashboard-text {
-    font-size: 1.2rem;
-  }
-  .dashboard-box-text,
-  .dashboard-box-button {
-    font-size: 0.6rem;
-  }
-  .dashboard-box-button button {
-    font-size: 0.45rem;
-    width: 4rem;
-  }
-  .dashboard-box-div span {
-    font-size: 1rem;
-  }
-}

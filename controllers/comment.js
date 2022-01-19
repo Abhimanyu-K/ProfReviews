@@ -23,7 +23,7 @@ exports.postComment = (req, res, next) => {
 exports.getComment = (req, res, next) => {
     const post_id = req.body.postId;
     console.log(post_id);
-    Review.find().then((result)=>{
+    Review.find().sort({date:'desc'}).then((result)=>{
         res.status(200).json({
             comment:result,
         })

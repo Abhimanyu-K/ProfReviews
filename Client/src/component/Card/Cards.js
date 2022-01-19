@@ -17,7 +17,7 @@ const Cards = ()=>{
              <p className='profile-body'>I am looking for determined, motivated and hardworking PhD students who 
              like to work on research side and contribute to the knowledge. Interested students can contact me via email or telephone.
                </p>
-               <Link to="6140e5d679a393369800890e/profile">
+               <Link to="6140e5d679a393369800890e">
              <a href='/' className='profile-link'>for details<i class="fa fa-external-link"  aria-hidden="true"></i></a>  
              </Link>
          </div>
@@ -32,7 +32,7 @@ const Cards = ()=>{
              <p className='profile-body'>My broad field of research is nonlinear differential equations. Recently my work is focussed on dynamical
               systems governed by nonlinear fractional differential and differential - difference equations.
                </p>
-               <Link to="6142ed78da15434e486d514a/profile">
+               <Link to="6142ed78da15434e486d514a">
              <a href='/' className='profile-link'>for details<i class="fa fa-external-link"  aria-hidden="true"></i></a>
              </Link>  
          </div>
@@ -47,7 +47,7 @@ const Cards = ()=>{
              <p className='profile-body'>DR. P. Victer Paul is working in the fields of Optimization 
              algorithms, Cloud Computing and Data Analytics.
                </p>
-               <Link to="6142eea1da15434e486d5150/profile">
+               <Link to="6142eea1da15434e486d5150">
              <a href='/' className='profile-link'>for details<i class="fa fa-external-link"  aria-hidden="true"></i></a>  
              </Link>         
          </div>

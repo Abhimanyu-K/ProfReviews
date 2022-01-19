@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-
+import  { Redirect } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import LoginModal from "../LoginModal/LoginModal";
 import './Rating.css';
@@ -25,7 +25,7 @@ function Rating(props) {
     else{
       setValid(true);
       setCurrentValue(value);
-     
+      console.log(value);
     }
     
  }
@@ -40,7 +40,7 @@ function Rating(props) {
   const formSubmitHandler = (event)=>{
     event.preventDefault();
     props.rating(event,{message:message,currentValue:currentValue});
-  
+    console.log("hello");
     
   }
   const messageHandler = (event)=>{
@@ -51,7 +51,7 @@ function Rating(props) {
   return (
     <React.Fragment>
         <div className="rating-conatiner">
-        <div className="rating-star-container" ref={props.body}>
+        <div className="rating-star-container">
               <h2> Rate Us </h2>
         </div>
         <form onSubmit={formSubmitHandler} className="rating-form">

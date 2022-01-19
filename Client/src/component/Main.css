@@ -44,7 +44,7 @@
 .rating-div {
   width: 50%;
   height: 40vh;
-  background: var(--white);
+  background: rgb(255, 255, 255);
   border-radius: 10px;
   position: relative;
   display: flex;
@@ -173,7 +173,7 @@
   margin-top: -5vw;
   margin-left: 5vw;
   position: relative;
-  font-size: 75px;
+  font-size: 80px;
   font-family: "Merriweather";
   font-weight: lighter;
   color: var(--black);
@@ -348,12 +348,12 @@
   }
   .alignbtns {
     position: relative;
-    top: -4rem;
+    top: 7vw;
   }
   .button-div {
     position: relative;
     left: 0;
-    top: 1.1rem;
+    top: 1.1vw;
   }
   .btn-para {
     position: relative;
@@ -396,7 +396,7 @@
 
   .alignbtns {
     position: relative;
-    top: -6rem;
+    top: 0;
   }
   .button-div {
     position: relative;
@@ -420,19 +420,10 @@
 @media (max-width: 950px) {
   .front-part1_1 .text1 {
     position: relative;
-    top: 16rem;
+    top: 38vw;
   }
   .front-part1_1 .text1 span {
     font-size: 1.6rem;
-  }
-  .sp1 {
-    font-size: 4rem;
-  }
-  .sp2 {
-    font-size: 3rem;
-  }
-  .sp3 {
-    font-size: 2rem;
   }
   .btn-para {
     position: relative;
@@ -593,17 +584,14 @@
     position: relative;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 420px) {
   .svg {
     width: 280px;
     position: relative;
     top: -2rem;
   }
-  .front-part1_1 .text1 {
-    font-size: 0.96rem;
-    position: relative;
-    top: 3rem;
-    text-align: center;
+  .front-part1_1 .text1 span {
+    font-size: 1.1rem;
   }
   .text {
     position: relative;
@@ -611,7 +599,7 @@
   }
   .alignbtns {
     position: relative;
-    top: -6rem;
+    top: -4rem;
   }
   .rating-div-parent {
     position: relative;
@@ -619,10 +607,6 @@
   }
   .rating-div {
     font-size: 1rem;
-  }
-  .btn-para {
-    position: relative;
-    top: 0rem;
   }
   .sp1 {
     font-size: 2rem;
@@ -653,6 +637,13 @@
     top: 3px;
   }
 
+  .text1 span {
+    font-size: 1rem;
+    position: relative;
+    text-align: center;
+    left: 2vw;
+    max-width: 300px;
+  }
   .text1 p {
     font-size: 1rem;
     position: relative;
@@ -661,7 +652,7 @@
   }
   .btn-para {
     position: relative;
-    top: -0.5rem;
+    top: -2rem;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -679,7 +670,7 @@
   .btn4 {
     padding: 3px;
     margin: 0;
-    font-size: 0.73rem;
+    font-size: 0.8rem;
   }
   .front-part2 {
     position: relative;
@@ -704,7 +695,7 @@
     position: relative;
     top: 4.5rem;
     max-width: 100%;
-    font-size: 1.05rem;
+    font-size: 2rem;
   }
   .front-part2-cards {
     position: relative;

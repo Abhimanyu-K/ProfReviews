@@ -1,14 +1,13 @@
-import React,{useRef} from 'react';
+import React,{useState,useRef} from 'react';
 import './ProfileDropDown.css';
 import {Link} from 'react-router-dom';
 import profileImage from '../ContactUs/Template/images/profileImage.png'
 const ProfileDropDown = (props)=>{
     const showProfile = useRef();
-    const url = props.url
+    const url = localStorage.getItem("image");
     
     let image = ""
-    if(url!==null){
-      console.log(url);
+    if(url){
       image = url;
     }
     else{
@@ -16,7 +15,7 @@ const ProfileDropDown = (props)=>{
     }
     const userName  = localStorage.getItem("userName");
     const profileHandler = ()=>{
-     
+        console.log(showProfile.current);
         showProfile.current.classList.toggle('active');
     }
       return(

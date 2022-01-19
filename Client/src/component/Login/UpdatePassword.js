@@ -4,13 +4,13 @@ import './Reset.css';
 import { useParams } from 'react-router';
 const UpdatePassword = (props)=>{
     const {value:enteredPassword,
-        
+        isValid:enteredPasswordIsValid,
         hasError:passwordHasError,
         valueChangeHandler:passwordChangeHandler,
-        inputBlurHandler:passwordBlurHandler
-       } = useInput((value)=>value.trim().length>=6);
+        inputBlurHandler:passwordBlurHandler,
+        reset:resetPasswordInput} = useInput((value)=>value.trim().length>=6);
         const {token} = useParams();
-      
+        console.log(token);
     const formSubmitHandler = (event)=>{
         event.preventDefault();
         props.onReset(event,{password:enteredPassword},token);

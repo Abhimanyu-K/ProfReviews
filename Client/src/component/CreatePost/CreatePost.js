@@ -6,16 +6,18 @@ import useInput from '../../Hooks/use-input';
 const CreatePost = (props)=>{
     
     const {value:enteredTitle,
-        
+        isValid:enteredTitleIsValid,
+        hasError:titleHasError,
         valueChangeHandler:titleChangeHandler,
-        inputBlurHandler:titleBlurHandler
-        } = useInput((value)=>value.trim().length>=6);
+        inputBlurHandler:titleBlurHandler,
+        reset:resetTitleInput} = useInput((value)=>value.trim().length>=6);
     
     const {value:enteredContent,
-        
+        isValid:enteredContentIsValid,
+        hasError:contentHasError,
         valueChangeHandler:contentChangeHandler,
-        inputBlurHandler:contentBlurHandler
-        } = useInput((value)=>value.trim().length>=6);
+        inputBlurHandler:contentBlurHandler,
+        reset:resetContentInput} = useInput((value)=>value.trim().length>=6);
 
     const formSubmitHandler = (event)=>{
         

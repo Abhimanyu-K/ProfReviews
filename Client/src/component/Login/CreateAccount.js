@@ -1,44 +1,83 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './CreateAccount.css';
 import useInput from '../../Hooks/use-input';
 import {Link} from 'react-router-dom';
-import GoogleImg from '../ContactUs/Template/images/google-img.jpg';
-
+import { useHistory } from 'react-router-dom';
+import {GoogleLogin} from 'react-google-login';
 const CreateAccount = (props)=>{
-  
+  const [data,setData] = useState([]);
+  let history = useHistory();
   const {value:enteredName,
-  
+    isValid:enterednameIsValid,
+     hasError:inputHasError,
      valueChangeHandler:nameChangeHandler,
-     inputBlurHandler:nameBlurHandler
-     } = useInput((value)=>value.trim()!=='');
+     inputBlurHandler:nameBlurHandler,
+      reset:resetNameInput} = useInput((value)=>value.trim()!=='');
 
 const {value:enteredEmail,
-     
+     isValid:enteredEmailIsValid,
+      hasError:emailHasError,
       valueChangeHandler:emailChangeHandler,
-      inputBlurHandler:emailBlurHandler
-    } = useInput((value)=>value.includes('@'));    
+      inputBlurHandler:emailBlurHandler,
+      reset:resetEmailInput} = useInput((value)=>value.includes('@'));    
 
       const {value:enteredPassword,
-        
+         isValid:enteredPasswordIsValid,
+          hasError:passwordHasError,
           valueChangeHandler:passwordChangeHandler,
-          inputBlurHandler:passwordBlurHandler
-          } = useInput((value)=>value.trim().length>=8);  
+          inputBlurHandler:passwordBlurHandler,
+           reset:resetPasswordInput} = useInput((value)=>value.trim().length>=8);  
       const {value:enteredPassword1,
-         
+          isValid:enteredPasswordIsValid1,
+            hasError:passwordHasError1,
            valueChangeHandler:passwordChangeHandler1,
-           inputBlurHandler:passwordBlurHandler1
-           } = useInput((value)=>value.trim().length>=8);  
+           inputBlurHandler:passwordBlurHandler1,
+             reset:resetPasswordInput1} = useInput((value)=>value.trim().length>=8);  
      
    const formsubmitHandler = (event)=>{
-    
      event.preventDefault();
-    props.onsignup(event,{email:enteredEmail,password:enteredPassword,name:enteredName,confirmPassword:enteredPassword1});
+     console.log(enteredEmail);
+             props.onsignup(event,{email:enteredEmail,password:enteredPassword,name:enteredName,confirmPassword:enteredPassword1});
     }
-    const handleLogin = ()=>{
-      props.google();
-  
+    const handleLogin = (res)=>{
+      props.google(true);
+      const result = res.profileObj;
+      const token = res.tokenId;
+      console.log(result, token);
+      
+      fetch("http://localhost:8080/auth/api/v1/auth/google",{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          token:token
+        })
+      })
+      .then(res=>{
+        return res.json();
+      })
+      .then(resData=>{
+        console.log(resData);
+        localStorage.setItem("token", resData.token);
+        localStorage.setItem("userId", resData.userId);
+        localStorage.setItem("userName", resData.userName);
+        localStorage.setItem("image",resData.picture);
+        localStorage.setItem("date",resData.date);
+        localStorage.setItem("google",resData.exist);
+        const remainingMilliseconds = 60 * 60 * 1000;
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
+        localStorage.setItem("expiryDate", expiryDate.toISOString());
+        history.push("/");
+      })
+
+
     }
-    console.log(process.env.GOOGLE_CLIENT_ID);
+    const hello = ()=>{
+      console.log("hi");
+    }
   return  (
     <div className="login1-Container">
     <div className="login1Header">
@@ -47,10 +86,16 @@ const {value:enteredEmail,
     <div className="login1FormContainer">
         <div className="login1Form">
             <form onSubmit={formsubmitHandler}>
-            <div className="googleContainer" onClick = {handleLogin}>
-                <img src={GoogleImg} alt = "Google Icon"/>
-                <p>Login With Google</p>
-            </div>
+                <GoogleLogin
+                    clientId="224215270537-dtgav02548e8bbrlbltujslkf9c504o9.apps.googleusercontent.com"
+                    buttonText="Log in with Google"
+                    onClick = {hello}
+                    onSuccess={handleLogin}
+                    onFailure={handleLogin}
+                    cookiePolicy={'single_host_origin'}
+                    className = "login1google1"
+                />
+               
                  <div className="login1Text"><span>or enter your email address</span></div>
                  <div className="createFormFill">
                  <span>Full Name</span>

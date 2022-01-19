@@ -48,8 +48,8 @@ class Feed extends Component{
             page--;
             this.setSate({postPage:page});
         }
-      
-        fetch('/feed/posts')
+        console.log(1);
+        fetch('http://localhost:8080/feed/posts')
         .then(res=>{
             
             if(res.status!==200 )
@@ -83,7 +83,7 @@ class Feed extends Component{
     
     deletePostHandler = postId=>{
         this.setState({postsLoading:true});
-        fetch('/feed/post/'+postId,{
+        fetch('http://localhost:8080/feed/post/'+postId,{
             method:'DELETE'
         })
         .them(res=>{
@@ -95,7 +95,7 @@ class Feed extends Component{
 
         })
         .then(resData=>{
-          
+            console.log(resData);
             this.setState(prevState=>{
                 const updatedPosts = prevState.posts.filter(p=>p._id!==postId);
                 return {posts:updatedPosts,postLoading:false};

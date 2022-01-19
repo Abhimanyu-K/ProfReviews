@@ -43,14 +43,3 @@
     width: 30rem;
   }
 }
-
-@media (max-width: 520px) {
-  .login1Header span {
-    font-size: 1.3rem;
-  }
-  .login1Header p {
-    font-size: 1.8rem;
-    position: relative;
-    top: 2.14rem;
-  }
-}

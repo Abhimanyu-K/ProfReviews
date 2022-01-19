@@ -1,15 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Hammersmith+One);
 
-:root {
-  --blue: rgb(27, 109, 134);
-  --black: rgb(14, 13, 13);
-  --white: white;
-  --lightblack: rgb(58, 56, 56);
-}
-.dark {
-  --white: rgb(43, 44, 59);
-  --black: rgb(253, 251, 251);
-}
 .rating-container {
   display: flex;
   justify-content: center;
@@ -18,7 +8,7 @@
   width: 100%;
 }
 .rating-form {
-  background: var(--white);
+  background: rgb(255, 255, 255);
 }
 .rating-container h2 {
   text-align: center;

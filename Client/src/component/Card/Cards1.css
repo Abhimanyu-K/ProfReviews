@@ -78,17 +78,13 @@
 .card1-container.lower {
   top: -2rem;
 }
-@media (max-width: 450px) {
+@media (max-width: 420px) {
   .profile1-name {
-    font-size: 0.45rem;
+    font-size: 0.8rem;
   }
   .profile1-body {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     position: relative;
     text-align: left;
-    height: 3rem;
-  }
-  .profile1-position i {
-    font-size: 0.5rem;
   }
 }

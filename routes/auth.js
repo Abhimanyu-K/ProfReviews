@@ -40,6 +40,9 @@ router.get('/googleauth/',(req,res)=>{
         {expiresIn:'1h'})
         res.status(200).json({user:req.user,token:token});
     }
+    else{
+        console.log("hello")
+    }
 
     
 })

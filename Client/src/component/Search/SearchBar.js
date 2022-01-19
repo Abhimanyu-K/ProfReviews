@@ -5,18 +5,16 @@ import CloseIcon from "@material-ui/icons/Close";
 import Paginator from "../Paginator/Paginator";
 import AllProfile from "../AllProfile/AllProfile";
 import "./Search.css";
-function SearchBar({ placeholder,value }) {
+function SearchBar({ placeholder }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [postLoading, setPostLoading] = useState(true);
-  let domainArray = [];
+  const [domainArray,setDomainArray] = useState([]);
   let data = [];
   let newFilter = [];
   let v = [];
-  let domainResult = [];
-  
-  fetch("/search")
+  fetch("http://localhost:4000/search")
     .then((res) => {
       return res.json();
     })
@@ -34,12 +32,12 @@ function SearchBar({ placeholder,value }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-   
+     console.log(data,"ashish")
     for (let i in data) {
-   
+      console.log(data[i], "s");
       newFilter = data[i].map((inner) => {
-     
-        domainArray = (inner.domain.split("\n"));
+        console.log(inner.domain.split("\n"));
+        setDomainArray(inner.domain.split("\n"));
         if (
           inner.college
             .toLowerCase()
@@ -49,32 +47,14 @@ function SearchBar({ placeholder,value }) {
           setIsValid(true);
           return { ...inner };
         } 
-        
         else{
-          domainResult = (domainArray.map(element=>{
-            if(element.toLowerCase().trim().includes(searchWord.toLowerCase().trim()))
-            {
-            
-              
-              
-              return {...inner};
-            }
-          }))
-        
-          for(i in domainResult)
-          {
-            if(domainResult[i]!==undefined)
-            {
-              setIsValid(true);
-              return {...inner};
-               
-            }
-          }
           
+          setIsValid(false);
         }
       });
-      
       setPostLoading(false);
+
+      console.log(newFilter, "/");
     }
     v = newFilter.map((data) => {
       return { ...data };
@@ -115,7 +95,7 @@ function SearchBar({ placeholder,value }) {
           {isValid && (
             <Paginator>
               {filteredData.map((result) => {
-               
+                console.log(result.name,'**')
                 if(result.name!==undefined)
                 {
                   return (
