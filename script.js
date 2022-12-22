@@ -92,7 +92,7 @@ app.get(
   passport.authenticate("google"),
   (req, res) => {
     console.log(req.user);
-    res.redirect("https://profreview.herokuapp.com");
+    res.redirect("https://profreviews.onrender.com");
   }
 );
 

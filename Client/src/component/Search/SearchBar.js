@@ -10,11 +10,11 @@ function SearchBar({ placeholder }) {
   const [wordEntered, setWordEntered] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [postLoading, setPostLoading] = useState(true);
-  const [domainArray,setDomainArray] = useState([]);
+  const [domainArray, setDomainArray] = useState([]);
   let data = [];
   let newFilter = [];
   let v = [];
-  fetch("http://localhost:4000/search")
+  fetch("http://localhost:8080/search")
     .then((res) => {
       return res.json();
     })
@@ -32,7 +32,6 @@ function SearchBar({ placeholder }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-     console.log(data,"ashish")
     for (let i in data) {
       console.log(data[i], "s");
       newFilter = data[i].map((inner) => {
@@ -46,9 +45,7 @@ function SearchBar({ placeholder }) {
         ) {
           setIsValid(true);
           return { ...inner };
-        } 
-        else{
-          
+        } else {
           setIsValid(false);
         }
       });
@@ -91,13 +88,12 @@ function SearchBar({ placeholder }) {
           </div>
         </div>
         <section className="searchFeed">
-          {postLoading && <span>Welcome To ProReviews</span>}
+          {postLoading && <span>Welcome To ProfReviews</span>}
           {isValid && (
             <Paginator>
               {filteredData.map((result) => {
-                console.log(result.name,'**')
-                if(result.name!==undefined)
-                {
+                console.log(result.name, "**");
+                if (result.name !== undefined) {
                   return (
                     <AllProfile
                       image={result.image}
@@ -109,7 +105,6 @@ function SearchBar({ placeholder }) {
                     />
                   );
                 }
-                
               })}
             </Paginator>
           )}

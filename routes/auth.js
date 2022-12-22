@@ -1,56 +1,52 @@
-const express = require('express');
-const {body} = require('express-validator/check');
-const User = require('../models/user');
-const {OAuth2Client} = require('google-auth-library');
-const authController = require('../controllers/auth');
+const express = require("express");
+const { body } = require("express-validator/check");
+const User = require("../models/user");
+const { OAuth2Client } = require("google-auth-library");
+const authController = require("../controllers/auth");
 const router = express.Router();
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-router.put('/signup',
-[
-        body('email')
-        .isEmail().withMessage('Please enter a valid email.')
-        .custom((value,{req})=>{
-            return User.findOne({email:value}).then(userDoc=>{
-                if(userDoc){
-                    return Promise.reject('E-mail already exist!');
-                }
-            });
-        })
-        .normalizeEmail(),
-        body('password')
-        .trim().isLength({min:5}),
-        body('name')
-        .trim()
-        .not()
-        .isEmpty()
+router.put(
+  "/signup",
+  [
+    body("email")
+      .isEmail()
+      .withMessage("Please enter a valid email.")
+      .custom((value, { req }) => {
+        return User.findOne({ email: value }).then((userDoc) => {
+          if (userDoc) {
+            return Promise.reject("E-mail already exist!");
+          }
+        });
+      })
+      .normalizeEmail(),
+    body("password").trim().isLength({ min: 5 }),
+    body("name").trim().not().isEmpty(),
+  ],
+  authController.signup
+);
 
-],
-authController.signup);
-
-router.get('/googleauth/',(req,res)=>{
-    console.log(req.user,"why");
-    if(req.user!==undefined)
-    {
-        const token = jwt.sign({
-            googleId:req.user.googleId,
-            userId:req.user._id.toString()
-        },
-        'somesupersecret',
-        {expiresIn:'1h'})
-        res.status(200).json({user:req.user,token:token});
-    }
-    else{
-        console.log("hello")
-    }
-
-    
-})
-router.get('/logout/',(req,res)=>{
-    req.logOut();
-    console.log(req.user,"logout");
-    res.status(200).json({user:req.user});
-})
+router.get("/googleauth/", (req, res) => {
+  console.log(req.user, "why");
+  if (req.user !== undefined) {
+    const token = jwt.sign(
+      {
+        googleId: req.user.googleId,
+        userId: req.user._id.toString(),
+      },
+      "somesupersecret",
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ user: req.user, token: token });
+  } else {
+    console.log("hello");
+  }
+});
+router.get("/logout/", (req, res) => {
+  req.logOut();
+  console.log(req.user, "logout");
+  res.status(200).json({ user: req.user });
+});
 /*
 router.put('/api/v1/auth/google',async (req,res)=>{
     const token = req.body.token;
@@ -105,8 +101,8 @@ router.put('/api/v1/auth/google',async (req,res)=>{
     
     
 })
-  */        
-router.post('/login',authController.login);
-router.post('/reset',authController.reset);
-router.post('/reset/:token',authController.newPassword);
+  */
+router.post("/login", authController.login);
+router.post("/reset", authController.reset);
+router.post("/reset/:token", authController.newPassword);
 module.exports = router;
